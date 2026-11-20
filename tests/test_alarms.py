@@ -209,6 +209,19 @@ class AlarmScheduleTests(unittest.TestCase):
         self.assertFalse(play_alarm(Path("/tmp"), "classic", 0, 1))
         self.assertFalse(play_alarm(Path("/tmp"), "classic", 80, 1, player=""))
 
+    def test_join_reminder_uses_the_selected_lead_and_can_be_off(self) -> None:
+        start = datetime(2026, 11, 20, 10, 0, tzinfo=UTC)
+        linked = _meeting("arch", start, online_meeting_url="https://teams.microsoft.com/l/meetup-join/example")
+        room = _meeting("room", start, location="Room 2")
+        moment = start - timedelta(minutes=2)
+        due = due_meeting_alarms([linked, room], moment, [10, 0], set(), join_minutes=2)
+        self.assertEqual([item.source_id for item in due], ["arch"])
+        self.assertEqual(due[0].offset_minutes, 2)
+        self.assertEqual(due[0].url, "https://teams.microsoft.com/l/meetup-join/example")
+        self.assertEqual(due_meeting_alarms([linked], moment, [10, 0], set(), join_minutes=0), [])
+        same_minute = due_meeting_alarms([linked], start - timedelta(minutes=10), [10], set(), join_minutes=10)
+        self.assertEqual(len(same_minute), 1)
+
     def test_legacy_config_keeps_its_single_reminder(self) -> None:
         legacy = AppConfig.from_dict({"join_reminder_minutes": 5})
         self.assertEqual(legacy.meeting_reminder_offsets, [5])

@@ -82,7 +82,7 @@ echo "Running unit tests..."
 QT_QPA_PLATFORM=offscreen .venv/bin/python -m unittest discover -s tests -v
 
 echo "Installing the application icon and launcher..."
-QT_QPA_PLATFORM=offscreen .venv/bin/python -c "from app.desktop_launch import install_launcher; print(install_launcher())"
+QT_QPA_PLATFORM=offscreen .venv/bin/python -c "from app.desktop_launch import install_application; print(install_application())"
 if command -v update-desktop-database >/dev/null 2>&1; then
   update-desktop-database "${XDG_DATA_HOME:-$HOME/.local/share}/applications" || true
 fi
@@ -92,14 +92,13 @@ fi
 
 echo
 echo "Installation complete."
-echo "Open the app grid, right-click Exchange Calendar, and choose Add to Favorites."
+echo "Open the app grid and start Exchange Calendar."
+echo "Right-click it and choose Add to Favorites to pin it to the dock."
+echo "The virtual environment does not need to be activated."
 echo
-echo "Start the dashboard:"
-echo "  source .venv/bin/activate"
-echo "  python main.py"
-echo
-echo "Try the interface before Exchange is configured:"
-echo "  python main.py --demo"
+echo "The same launcher works from a terminal:"
+echo "  ~/.local/bin/exchange-calendar"
+echo "  ~/.local/bin/exchange-calendar --demo"
 echo
 echo "Then open Settings and enter the on-premises Exchange connection:"
 echo "  Email, DOMAIN\\\\username, EWS URL, and NTLM, Basic, or Kerberos."

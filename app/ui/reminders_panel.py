@@ -76,8 +76,9 @@ class ReminderPanel(QWidget):
             store.snoozes,
             now,
             tz,
-            list(config.meeting_reminder_offsets),
+            list(config.meeting_reminder_offsets) if config.meeting_reminders_enabled else [],
             store.fired,
+            join_minutes=int(config.join_reminder_minutes),
         )
         lead = ""
         if upcoming is not None:

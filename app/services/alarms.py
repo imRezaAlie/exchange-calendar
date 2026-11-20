@@ -161,6 +161,23 @@ def meeting_offsets(meeting: Meeting, configured: list[int], respect_exchange: b
     return normalize_offsets(configured)
 
 
+def scheduled_offsets(
+    meeting: Meeting,
+    configured: list[int],
+    respect_exchange: bool,
+    join_minutes: int = 0,
+) -> list[int]:
+    """Meeting reminders, plus the Join reminder when this meeting has a link."""
+    offsets = list(meeting_offsets(meeting, configured, respect_exchange))
+    try:
+        lead = int(join_minutes)
+    except (TypeError, ValueError):
+        lead = 0
+    if lead > 0 and lead not in offsets and _join_link(meeting):
+        offsets.append(lead)
+    return offsets
+
+
 def meeting_key(meeting: Meeting, offset: int) -> str:
     return f"meeting|{meeting.uid}|{as_utc(meeting.start).isoformat()}|{int(offset)}"
 
@@ -224,6 +241,7 @@ def due_meeting_alarms(
     conflict_warnings: bool = True,
     conflict_policy: ConflictPolicy | None = None,
     cached: bool = False,
+    join_minutes: int = 0,
 ) -> list[DueAlarm]:
     report = ConflictReport()
     by_id = {meeting.uid: meeting for meeting in meetings}
@@ -233,7 +251,7 @@ def due_meeting_alarms(
     for meeting in meetings:
         if not _eligible_meeting(meeting):
             continue
-        for offset in meeting_offsets(meeting, offsets, respect_exchange):
+        for offset in scheduled_offsets(meeting, offsets, respect_exchange, join_minutes):
             key = meeting_key(meeting, offset)
             if key in fired:
                 continue
@@ -397,13 +415,14 @@ def next_trigger(
     tz: ZoneInfo,
     offsets: list[int],
     fired: set[str],
+    join_minutes: int = 0,
 ) -> datetime | None:
     candidates: list[datetime] = []
     moment = as_utc(now)
     for meeting in meetings:
         if not _eligible_meeting(meeting):
             continue
-        for offset in meeting_offsets(meeting, offsets, False):
+        for offset in scheduled_offsets(meeting, offsets, False, join_minutes):
             if meeting_key(meeting, offset) in fired:
                 continue
             trigger = as_utc(meeting.start - timedelta(minutes=offset))
@@ -448,6 +467,13 @@ def _meeting_url(meeting: Meeting) -> str:
     from app.calendar.links import meeting_url
 
     return meeting_url(meeting)
+
+
+def _join_link(meeting: Meeting) -> str:
+    url = _meeting_url(meeting)
+    if url.startswith("http://") or url.startswith("https://"):
+        return url
+    return ""
 
 
 def _todo_trigger(todo: TodoRecord, tz: ZoneInfo) -> datetime | None:

@@ -37,19 +37,15 @@ chmod +x install.sh
 ./install.sh
 ```
 
-The script creates `.venv`, installs the Python dependencies from `requirements.txt`, runs the unit tests, and installs the dock icon at `~/.local/share/applications/exchange-calendar.desktop`.
+The script creates `.venv`, installs the Python dependencies from `requirements.txt`, runs the unit tests, and installs the dock icon at `~/.local/share/applications/exchange-calendar.desktop`. It also installs `~/.local/bin/exchange-calendar`, which starts the application with the virtual environment’s Python.
 
-Start the application:
+Open **Exchange Calendar** from the app grid. Right-click it and choose **Add to Favorites** to pin it to the dock. You do not need to activate `.venv` or run `python main.py`.
 
-```bash
-source .venv/bin/activate
-python main.py
-```
-
-Start the sample calendar:
+The same command works from a terminal, including the sample calendar:
 
 ```bash
-python main.py --demo
+~/.local/bin/exchange-calendar
+~/.local/bin/exchange-calendar --demo
 ```
 
 A second launch focuses the window that is already running. Closing the window quits the application and removes its icon from the top bar, unless “Keep running in the tray when the window is closed” is turned on.
@@ -129,7 +125,7 @@ Exchange work runs on a background thread. The previous calendar stays visible i
 
 ## Reminders, alarms, and tasks
 
-Meeting reminders use their own 30-second clock, separate from the Exchange refresh. The default is a bell 10 minutes before the meeting and again when it starts. Choose 30, 15, 10, 5 minutes before, or the start time, under Settings → Reminders & Alarms. A conflict names the other meeting. Join opens the link only after you click it. Snooze waits 5, 10, 15, or 30 minutes. Dismissed reminders stay quiet.
+Meeting reminders use their own 30-second clock, separate from the Exchange refresh. The default is a bell 10 minutes before the meeting and again when it starts. Choose 30, 15, 10, 5 minutes before, or the start time, under Settings → Reminders & Alarms. Join reminder adds one more alarm, 2, 5, or 10 minutes before, for a meeting that has a join link. Off leaves that extra alarm out. A conflict names the other meeting. Join opens the link only after you click it. Snooze waits 5, 10, 15, or 30 minutes. Dismissed reminders stay quiet.
 
 Tasks live under the Tasks button. Set a reminder time, or leave the reminder off. The bell is one of four sounds played through PulseAudio or PipeWire. Mute in the tray menu keeps the visual reminder. The alarm still appears when the window is minimized. If Exchange is offline, the reminder says it came from the saved calendar.
 
@@ -169,7 +165,7 @@ exchange-calendar/
 ├── app/
 │   ├── config.py           preferences and XDG paths
 │   ├── models.py
-│   ├── desktop_launch.py   application icon and dock launcher
+│   ├── desktop_launch.py   application icon, menu launcher, and command
 │   ├── calendar/           dates, demo data, and conflict detection
 │   ├── exchange/           EWS authentication and calendar reading
 │   ├── services/           refresh, alarms, and notifications
@@ -192,7 +188,7 @@ Runtime files, outside this repository:
 - **Authentication failed.** Check the username form `DOMAIN\username`, the password, and that NTLM is enabled on the EWS virtual directory.
 - **Autodiscover failed.** Paste the EWS URL. It normally ends in `/EWS/Exchange.asmx`.
 - **TLS certificate verification failed.** Add the server’s CA file in Settings. Verification cannot be turned off.
-- **The window is empty.** Use `python main.py --demo` to confirm the interface, then Test Connection.
+- **The window is empty.** Use `~/.local/bin/exchange-calendar --demo` to confirm the interface, then Test Connection.
 - **The keyring did not save the password.** Unlock the login keyring and save Settings again. The application also keeps an encrypted copy for the next launch.
-- **A dead icon stays in the top bar.** Close the window, or choose Exit in the tray menu. Do not leave a stopped `python main.py` process in a terminal.
+- **A dead icon stays in the top bar.** Close the window, or choose Exit in the tray menu. Do not leave a stopped `exchange-calendar` process in a terminal.
 - **Logs.** `~/.local/state/exchange-calendar/exchange-calendar.log`. Exchange library logging stays at warning level.

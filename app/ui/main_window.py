@@ -519,21 +519,22 @@ class MainWindow(QMainWindow):
             held.add(self._alarm_popup.alarm.key)
         fired = set(self.reminders.fired) | held
         alarms = due_snoozes(self.reminders.snoozes, now, fired)
-        if self.config.meeting_reminders_enabled and self._snapshot is not None:
+        if self._snapshot is not None and (self.config.meeting_reminders_enabled or self.config.join_reminder_minutes > 0):
             visible = [meeting for meeting in self._snapshot.meetings if self._visible_meeting(meeting)]
             alarms.extend(
                 due_meeting_alarms(
                     visible,
                     now,
-                    list(self.config.meeting_reminder_offsets),
+                    list(self.config.meeting_reminder_offsets) if self.config.meeting_reminders_enabled else [],
                     fired,
-                    respect_exchange=self.config.respect_exchange_reminder,
+                    respect_exchange=self.config.respect_exchange_reminder and self.config.meeting_reminders_enabled,
                     conflict_warnings=self.config.conflict_alarm_warnings,
                     conflict_policy=ConflictPolicy(
                         include_tentative=self.config.include_tentative_conflicts,
                         include_all_day=self.config.include_all_day_conflicts,
                     ),
                     cached=bool(self._snapshot.from_cache),
+                    join_minutes=int(self.config.join_reminder_minutes),
                 )
             )
         alarms.extend(
@@ -725,8 +726,9 @@ class MainWindow(QMainWindow):
             self.reminders.snoozes,
             now,
             self._tz,
-            list(self.config.meeting_reminder_offsets),
+            list(self.config.meeting_reminder_offsets) if self.config.meeting_reminders_enabled else [],
             self.reminders.fired,
+            join_minutes=int(self.config.join_reminder_minutes),
         )
         if upcoming is None:
             self.tray.setToolTip("Exchange Calendar")
