@@ -1,0 +1,5 @@
+PySide6-Essentials>=6.6,<7
+exchangelib>=5.4,<6
+keyring>=24,<26
+cryptography>=42,<48
+requests-ntlm>=1.2,<2

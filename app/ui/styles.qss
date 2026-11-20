@@ -1,0 +1,917 @@
+/* Desktop theme. Spacing follows an 8px grid. */
+
+QMainWindow, QDialog, QWidget {
+    background: @page@;
+    color: @text@;
+    font-family: @font@;
+    font-size: 13px;
+}
+
+QLabel {
+    background: transparent;
+    color: @text@;
+    font-size: 13px;
+}
+
+QLabel#appCaption {
+    color: @text@;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+QLabel#todayDate {
+    color: @muted@;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+QLabel#dialogTitle {
+    color: @text@;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+QLabel#dialogSubtitle {
+    color: @summary@;
+    font-size: 13px;
+}
+
+QLabel#sectionTitle {
+    color: @text@;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+QLabel#panelHeading {
+    color: @text@;
+    font-size: 15px;
+    font-weight: 600;
+    padding-top: 8px;
+}
+
+QLabel#columnHeaderText {
+    color: @text@;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+QLabel#hintLabel, QLabel#statusDetail, QLabel#mutedLabel, QLabel#dialogHint {
+    color: @muted@;
+    font-size: 12px;
+}
+
+QLabel#demoBadge {
+    color: @text@;
+    background: transparent;
+    border: 1px solid @accent_line@;
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+QLabel#connectionStatus {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QLabel#connectionStatus[tone="ok"] { color: @connected@; }
+QLabel#connectionStatus[tone="warn"] { color: @warning@; }
+QLabel#connectionStatus[tone="bad"] { color: @danger@; }
+QLabel#connectionStatus[tone="quiet"] { color: @muted@; }
+
+QWidget#topHeader {
+    background: @column@;
+    border-bottom: 1px solid @header_line@;
+}
+
+QWidget#columnHeader {
+    background: @page@;
+    border-bottom: 1px solid @header_line@;
+}
+
+QWidget#navBar, QWidget#weekStrip, QWidget#weekStats, QWidget#nowNextBar {
+    background: transparent;
+    border: none;
+}
+
+/* Buttons — one height, one radius, one type scale. */
+QPushButton {
+    background: @button@;
+    color: @button_text@;
+    border: 1px solid @button_line@;
+    border-radius: 6px;
+    padding: 0 16px;
+    min-height: 34px;
+    max-height: 34px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    background: @button_hover@;
+    border-color: @summary@;
+}
+
+QPushButton:pressed {
+    background: @button_pressed@;
+}
+
+QPushButton:disabled {
+    background: @disabled@;
+    color: @disabled_text@;
+    border-color: @disabled@;
+}
+
+QPushButton:focus {
+    border: 2px solid @accent@;
+    padding: 0 15px;
+}
+
+QPushButton#btnPrimary {
+    background: @primary@;
+    color: @primary_text@;
+    border: 1px solid @primary_line@;
+}
+
+QPushButton#btnPrimary:hover {
+    background: @primary_hover@;
+    border-color: @primary_line@;
+}
+
+QPushButton#btnPrimary:pressed {
+    background: @primary_pressed@;
+}
+
+QPushButton#btnPrimary:disabled {
+    background: @disabled@;
+    color: @disabled_text@;
+    border-color: @disabled@;
+}
+
+QPushButton#btnPrimary:focus {
+    border: 2px solid #000000;
+    padding: 0 15px;
+}
+
+QPushButton#btnDanger {
+    background: @column@;
+    color: @danger@;
+    border: 1px solid @conflict_box_line@;
+}
+
+QPushButton#btnDanger:hover {
+    background: @danger_soft@;
+    border-color: @danger@;
+}
+
+QPushButton#btnDanger:pressed {
+    background: @conflict_bg@;
+}
+
+QPushButton#btnDanger:disabled {
+    background: @disabled@;
+    color: @disabled_text@;
+    border-color: @disabled@;
+}
+
+QPushButton#btnToggle {
+    background: @button@;
+    color: @button_text@;
+    border: 1px solid @button_line@;
+}
+
+QPushButton#btnToggle:checked {
+    background: @accent_soft@;
+    color: @text@;
+    border: 1px solid @accent_line@;
+}
+
+QPushButton#btnToggle:checked:hover {
+    background: @accent_soft@;
+    border-color: @accent@;
+}
+
+QPushButton#btnToggle:focus {
+    border: 2px solid @accent@;
+}
+
+QPushButton#btnIcon, QPushButton#drawerButton {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 0;
+    min-width: 34px;
+    max-width: 34px;
+    min-height: 34px;
+    max-height: 34px;
+}
+
+QPushButton#btnIcon:hover, QPushButton#drawerButton:hover {
+    background: @button_hover@;
+    border-color: transparent;
+}
+
+QPushButton#btnIcon:pressed, QPushButton#drawerButton:pressed {
+    background: @button_pressed@;
+}
+
+QPushButton#btnIcon:focus, QPushButton#drawerButton:focus {
+    border: 2px solid @accent@;
+    padding: 0;
+}
+
+QPushButton#navItem {
+    background: transparent;
+    color: @text@;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 0 16px;
+    min-height: 34px;
+    max-height: 34px;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+}
+
+QPushButton#navItem:hover {
+    background: @hover@;
+    border-color: transparent;
+}
+
+QPushButton#navItem:checked {
+    background: @accent_soft@;
+    color: @text@;
+    border-color: @accent_line@;
+    font-weight: 700;
+}
+
+QPushButton#navItem:focus {
+    border: 2px solid @accent@;
+}
+
+QComboBox, QDateEdit, QTimeEdit, QLineEdit, QSpinBox {
+    background: @input@;
+    border: 1px solid @input_line@;
+    border-radius: 6px;
+    padding: 0 8px;
+    min-height: 34px;
+    max-height: 34px;
+    color: @text@;
+    font-size: 13px;
+}
+
+QComboBox:focus, QDateEdit:focus, QTimeEdit:focus, QLineEdit:focus, QSpinBox:focus {
+    border: 2px solid @focus@;
+    padding: 0 7px;
+}
+
+QComboBox:disabled, QDateEdit:disabled, QTimeEdit:disabled, QLineEdit:disabled, QSpinBox:disabled {
+    background: @disabled@;
+    color: @disabled_text@;
+}
+
+QComboBox QAbstractItemView {
+    background: @input@;
+    color: @text@;
+    selection-background-color: @accent_soft@;
+    selection-color: @text@;
+    border: 1px solid @input_line@;
+    border-radius: 6px;
+    padding: 4px;
+    outline: none;
+}
+
+QCalendarWidget QPushButton {
+    min-height: 28px;
+    max-height: 28px;
+    padding: 0 8px;
+    font-size: 12px;
+}
+
+QFrame#statPill {
+    background: transparent;
+    border: none;
+}
+
+QLabel#statValue {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+QLabel#statCaption {
+    color: @muted@;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+QLabel#statValue[tone="neutral"] { color: @text@; }
+QLabel#statValue[tone="quiet"] { color: @muted@; }
+QLabel#statValue[tone="alert"] { color: @conflict_text@; }
+QLabel#statValue[tone="busy"] { color: @text@; }
+QLabel#statValue[tone="free"] { color: @free_hours@; }
+
+QFrame#dayChip {
+    background: @column@;
+    border: 1px solid @card_line@;
+    border-radius: 6px;
+}
+
+QFrame#dayChip:hover {
+    background: @hover@;
+}
+
+QFrame#dayChip[selected="true"] {
+    background: @accent_solid@;
+    border: 1px solid @accent_solid@;
+}
+
+QFrame#dayChip[selected="true"]:hover {
+    background: @primary_hover@;
+    border-color: @primary_hover@;
+}
+
+QLabel#chipDate {
+    color: @text@;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+QLabel#chipBusy, QLabel#chipFree {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+QLabel#chipBusy { color: @text@; }
+QLabel#chipFree { color: @free_hours@; }
+
+QFrame#columnRule {
+    background: @header_line@;
+    border: none;
+    max-width: 1px;
+}
+
+QFrame#dayChip[selected="true"] QLabel#chipDate,
+QFrame#dayChip[selected="true"] QLabel#chipBusy {
+    color: @on_accent@;
+}
+
+QLabel#periodLabel {
+    color: @text@;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 0 16px;
+}
+
+QWidget#nowRow, QWidget#nextRow {
+    border-radius: 6px;
+}
+
+QWidget#nowRow {
+    background: @ongoing_bg@;
+    border: 1px solid @header_line@;
+    border-left: 3px solid @ongoing_line@;
+}
+
+QWidget#nextRow {
+    background: @column@;
+    border: 1px solid @card_line@;
+    border-left: 3px solid @row_line@;
+}
+
+QLabel#nowMark, QLabel#nextMark {
+    color: @summary@;
+    font-size: 11px;
+    font-weight: 700;
+    padding-left: 12px;
+}
+
+QLabel#nowSubject, QLabel#nextSubject {
+    color: @text@;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+QLabel#nowWhen, QLabel#nextWhen {
+    color: @muted@;
+    font-size: 12px;
+    padding-right: 8px;
+}
+
+QWidget#openRow, QWidget#laterRow {
+    background: transparent;
+}
+
+QLabel#openMark, QLabel#laterMark {
+    color: @free_hours@;
+    font-size: 11px;
+    font-weight: 700;
+    padding-left: 12px;
+}
+
+QLabel#openSubject, QLabel#laterSubject {
+    color: @text@;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+QLabel#cacheBanner {
+    background: @banner_bg@;
+    color: @banner_text@;
+    border-bottom: 1px solid @banner_line@;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QLabel#dayHeader, QLabel#dayHeaderToday {
+    font-weight: 600;
+    font-size: 13px;
+    padding: 16px 4px 4px 4px;
+    color: @text@;
+}
+
+QLabel#dayHeaderToday { color: @text@; }
+
+QLabel#emptyDay {
+    color: @empty@;
+    font-size: 13px;
+    padding: 8px 4px 12px 4px;
+}
+
+QLabel#sheetHead {
+    color: @muted@;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 0 8px;
+}
+
+QLabel#sheetCell, QLabel#meetingSubject, QLabel#meetingOrganizer, QLabel#meetingLocation {
+    padding: 0 8px;
+    font-size: 13px;
+}
+
+QLabel#meetingSubject {
+    font-weight: 600;
+}
+
+QFrame#meetingRow {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid @row_line@;
+    border-left: 3px solid transparent;
+    border-radius: 0;
+}
+
+QFrame#meetingRow:hover, QFrame#meetingRow:focus {
+    background: @hover@;
+}
+
+QFrame#meetingRow[past="true"] {
+    border-left: 3px solid transparent;
+}
+
+QFrame#meetingRow[ongoing="true"] {
+    background: @ongoing_bg@;
+    border-left: 3px solid @ongoing_line@;
+}
+
+QFrame#meetingRow[conflict="true"] {
+    background: transparent;
+    border-bottom: 1px solid @row_line@;
+    border-left: 3px solid @conflict_line@;
+}
+
+QFrame#meetingRow[conflict="true"]:hover, QFrame#meetingRow[conflict="true"]:focus {
+    background: @hover@;
+}
+
+QLabel#taskGroup {
+    color: @muted@;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 12px 8px 4px 8px;
+}
+
+QFrame#agendaTask {
+    background: @sheet_band@;
+    border: none;
+    border-bottom: 1px solid @row_line@;
+    border-left: 3px solid @summary@;
+    border-radius: 0;
+}
+
+QFrame#agendaTask QLabel {
+    background: transparent;
+}
+
+QFrame#agendaTask:hover, QFrame#agendaTask:focus {
+    background: @hover@;
+}
+
+QFrame#agendaTask[priority="high"] {
+    border-left: 3px solid @accent@;
+}
+
+QFrame#agendaTask[done="true"] {
+    border-left: 3px solid @row_line@;
+}
+
+QLabel#statusPill {
+    background: @sheet_band@;
+    color: @summary@;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+QLabel#conflictNote, QLabel#errorLabel {
+    color: @conflict_text@;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QScrollArea, QWidget#agendaViewport, QWidget#agendaList {
+    background: @page@;
+    border: none;
+}
+
+QSplitter::handle {
+    background: @header_line@;
+}
+
+QSplitter::handle:hover {
+    background: @splitter_hover@;
+}
+
+QStatusBar {
+    background: @status_bar@;
+    border-top: 1px solid @status_line@;
+    color: @muted@;
+    font-size: 12px;
+    min-height: 28px;
+}
+
+QStatusBar QLabel {
+    background: transparent;
+    padding: 0 16px;
+    color: @summary@;
+    font-size: 12px;
+}
+
+QFrame#conflictBox {
+    background: @column@;
+    border: 1px solid @conflict_line@;
+    border-radius: 6px;
+}
+
+QFrame#statusCard, QFrame#taskDetail, QTextBrowser#descriptionView {
+    background: @column@;
+    border: 1px solid @card_line@;
+    border-radius: 6px;
+}
+
+QTextBrowser#descriptionView {
+    color: @text@;
+    padding: 8px;
+}
+
+QLabel#factLabel {
+    color: @muted@;
+    font-size: 12px;
+}
+
+QLabel#factValue {
+    color: @text@;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+QLabel#statusHeadline {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+QLabel#errorBanner {
+    color: @error_text@;
+    background: @error_bg@;
+    border: 1px solid @conflict_box_line@;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+QCheckBox {
+    spacing: 8px;
+    background: transparent;
+    font-size: 13px;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+}
+
+QFrame#taskRow {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid @row_line@;
+    border-radius: 0;
+}
+
+QFrame#taskRow:hover {
+    background: @hover@;
+}
+
+QFrame#taskRow[selected="true"] {
+    background: @accent_soft@;
+}
+
+QLabel#taskTitle {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+QLabel#taskTitle[state="done"] {
+    color: @muted@;
+}
+
+QLabel#taskTitle[state="overdue"] {
+    color: @danger@;
+    font-weight: 600;
+}
+
+QLabel#taskMeta {
+    color: @muted@;
+    font-size: 12px;
+}
+
+QLabel#taskMeta[state="overdue"] {
+    color: @danger@;
+}
+
+QLabel#priorityBadge {
+    background: @accent@;
+    color: @on_accent@;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 0 6px;
+}
+
+QLabel#carryMark {
+    color: @summary@;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+QFrame#reminderRow {
+    background: transparent;
+    border: none;
+}
+
+QLabel#reminderTime {
+    color: @text@;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+QLabel#reminderKind {
+    color: @muted@;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+QLabel#reminderTitle {
+    color: @text@;
+    font-size: 13px;
+}
+
+QLabel#reminderTitle[conflict="true"] {
+    color: @conflict_text@;
+}
+
+QWidget#settingsNav {
+    background: @column@;
+    border-right: 1px solid @header_line@;
+}
+
+QWidget#reminderPanel {
+    background: transparent;
+    border: none;
+}
+
+QWidget#composer {
+    background: @column@;
+    border-top: 1px solid @header_line@;
+}
+
+QMenu {
+    background: @column@;
+    color: @text@;
+    border: 1px solid @card_line@;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+QMenu::item {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background: transparent;
+    min-height: 20px;
+}
+
+QMenu::item:selected {
+    background: @accent_soft@;
+    color: @text@;
+}
+
+QToolTip {
+    background: @tooltip_bg@;
+    color: @tooltip_text@;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 12px;
+}
+
+QScrollBar:vertical {
+    background: transparent;
+    width: 8px;
+    margin: 4px 2px;
+}
+
+QScrollBar::handle:vertical {
+    background: @button_line@;
+    min-height: 32px;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: @muted@;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical,
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    height: 0;
+    background: transparent;
+}
+
+QScrollBar:horizontal {
+    background: transparent;
+    height: 8px;
+    margin: 2px 4px;
+}
+
+QScrollBar::handle:horizontal {
+    background: @button_line@;
+    min-width: 32px;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: @muted@;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal,
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    width: 0;
+    background: transparent;
+}
+
+QFrame#eventBlock {
+    background: @card@;
+    border: 1px solid @button_line@;
+    border-left: 3px solid @summary@;
+    border-radius: 4px;
+}
+
+QFrame#eventBlock:hover, QFrame#eventBlock:focus {
+    border-color: @summary@;
+}
+
+QFrame#eventBlock[conflict="true"] {
+    background: @conflict_bg@;
+    border: 1px solid @conflict_box_line@;
+    border-left: 3px solid @conflict_line@;
+}
+
+QFrame#eventBlock[ongoing="true"] {
+    background: @ongoing_bg@;
+    border-left: 3px solid @text@;
+}
+
+QFrame#eventBlock[past="true"] {
+    background: @page@;
+}
+
+QFrame#eventBlock[selected="true"] {
+    border: 1px solid @accent_line@;
+    border-left: 3px solid @accent@;
+}
+
+QLabel#eventTitle {
+    color: @text@;
+    font-size: 12px;
+    font-weight: 600;
+    background: transparent;
+}
+
+QLabel#eventTime {
+    color: @muted@;
+    font-size: 11px;
+    background: transparent;
+}
+
+QFrame#nowLine {
+    background: @danger@;
+    border: none;
+}
+
+QLabel#gridDay {
+    color: @muted@;
+    font-size: 12px;
+    font-weight: 700;
+    background: transparent;
+}
+
+QLabel#gridDay[today="true"] {
+    color: @text@;
+}
+
+QLabel#gridDay[selected="true"] {
+    color: @text@;
+    border-bottom: 2px solid @accent@;
+}
+
+QFrame#allDayChip {
+    background: @sheet_band@;
+    border: none;
+    border-radius: 3px;
+}
+
+QFrame#allDayChip[kind="task"] {
+    border-left: 2px solid @summary@;
+}
+
+QFrame#allDayChip[kind="event"] {
+    border-left: 2px solid @info@;
+}
+
+QFrame#monthCell {
+    background: @column@;
+    border: 1px solid @card_line@;
+    border-radius: 6px;
+}
+
+QFrame#monthCell[outside="true"] {
+    background: transparent;
+}
+
+QFrame#monthCell[today="true"] {
+    border: 1px solid @summary@;
+}
+
+QFrame#monthCell[selected="true"] {
+    border: 1px solid @accent_line@;
+    background: @accent_soft@;
+}
+
+QLabel#monthNumber {
+    color: @text@;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+QFrame#monthCell[outside="true"] QLabel#monthNumber,
+QFrame#monthCell[outside="true"] QLabel#monthEvent {
+    color: @past@;
+}
+
+QLabel#monthEvent {
+    color: @text@;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 0 2px;
+}
+
+QLabel#monthEvent[conflict="true"] {
+    color: @conflict_text@;
+}
+
+QLabel#monthMore {
+    color: @muted@;
+    font-size: 11px;
+}
+
+QFrame#conflictCard {
+    background: @column@;
+    border: 1px solid @conflict_box_line@;
+    border-left: 3px solid @conflict_line@;
+    border-radius: 6px;
+}
+
+QFrame#meetingRow[selected="true"] {
+    background: @hover@;
+    border-left: 3px solid @accent@;
+}
